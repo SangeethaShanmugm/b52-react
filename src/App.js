@@ -137,6 +137,18 @@ function Msg({ name, picture }) {
 
 //<> </> => Fragment
 
+// {
+//   data.map((item) => (
+//     <Card icon={item.icon} name={item.name} />
+//   ))
+// }
 
 
+
+// card({icon, name}){
+//   return (
+//     <i class={icon}></i>
+//     <span>{name}</span>
+//   )
+// }
 export default App;
