@@ -1,0 +1,13 @@
+hooks => useState
+//destructure useState
+const [state, setState] = useState(initialValue)
+state =>previous value
+setState => currentValue
+
+
+state => 
+state of art of technology => top tech
+state of mind => wats running in your mind
+
+state => current scenario
+
