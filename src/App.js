@@ -1,154 +1,81 @@
 import './App.css';
-import { useState } from "react"
+import { AddColor } from './AddColor';
+
+const INITIAL_PRODUCT_LIST = [
+  {
+    name: "iPhone 13 (128GB)",
+    poster: "https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_UY327_FMwebp_QL65_.jpg",
+    price: "51,499",
+    rating: 4.5,
+    summary: "15 cm (6.1-inch) Super Retina XDR display. Cinematic mode adds shallow depth of field and shifts focus automatically in your videos"
+  },
+  {
+    name: "iPhone 13 (128GB)",
+    poster: "https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_UY327_FMwebp_QL65_.jpg",
+    price: "51,499",
+    rating: 4.5,
+    summary: "15 cm (6.1-inch) Super Retina XDR display. Cinematic mode adds shallow depth of field and shifts focus automatically in your videos"
+  }
+  ,
+  {
+    name: "iPhone 13 (128GB)",
+    poster: "https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_UY327_FMwebp_QL65_.jpg",
+    price: "51,499",
+    rating: 4.5,
+    summary: "15 cm (6.1-inch) Super Retina XDR display. Cinematic mode adds shallow depth of field and shifts focus automatically in your videos"
+  },
+  {
+    name: "iPhone 13 (128GB)",
+    poster: "https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_UY327_FMwebp_QL65_.jpg",
+    price: "51,499",
+    rating: 4.5,
+    summary: "15 cm (6.1-inch) Super Retina XDR display. Cinematic mode adds shallow depth of field and shifts focus automatically in your videos"
+  }
+]
+
 function App() {
-  //JS starts
-  const name = "Jack";
-  const name1 = "John";
-
-  const users = [
-    {
-      name: "jack",
-      age: "20"
-    },
-    {
-      name: "john",
-      age: "22"
-    },
-    {
-      name: "peter",
-      age: "25"
-    },
-    {
-      name: "mick",
-      age: "30"
-    }
-  ];
-
-  const profile = [
-    {
-      name: "jack",
-      pic:
-        "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg"
-    },
-    {
-      name: "john",
-      pic: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-    },
-    {
-      name: "peter",
-      pic:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-    }
-  ];
-  //JS ends
-  //JSX starts
+  const productList = INITIAL_PRODUCT_LIST
   return (
     <div className="App">
-      <Counter />
-      {/* {users.map((usr) => (
-        <Welcome name={usr.name} age={usr.age} />
-      ))} */}
-      {/* // profile pic and name => task */}
+      {/* <AddColor /> */}
+      <div className='product-list'>
+        {productList.map((pd) => (
+          <Product product={pd} />
+        ))}
+      </div>
 
-      {/* {profile.map((profile) => (
-        <Msg name={profile.name} picture={profile.pic} />
-      ))} */}
 
-      {/* <Msg
-        name="jack"
-        pic="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg"
-      />
-      <Msg
-        name="john"
-        pic="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      />
-      <Msg
-        name="peter"
-        pic="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-      /> */}
-      {/* <h1>Hello {name}</h1>
-      <h1>Welcome {name1}</h1> */}
-      {/* <Welcome name="jack" age="20" />
-      <Welcome name="john" age="22" />
-      <Welcome name="peter" age="25" /> */}
-      {/* <Msg username="Mick" /> */}
+
     </div>
   );
-  //JSX ends
+
 }
 
 
 
-function Counter() {
-  // let like = 10
-  const [like, setLike] = useState(0)
-  const [dislike, setDislike] = useState(0)
-  // console.log("previous value", like)
+function Product({ product }) {
+
+  // const product = {
+  //   name: "iPhone 13 (128GB)",
+  //   poster: "https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_UY327_FMwebp_QL65_.jpg",
+  //   price: "51,499",
+  //   rating: 4.5,
+  //   summary: "15 cm (6.1-inch) Super Retina XDR display. Cinematic mode adds shallow depth of field and shifts focus automatically in your videos"
+  // }
+
+  // console.log(product.name, product.poster)
   return (
-    <div>
-      {/* onClick => camelCase */}
-      <button onClick={() => {
-        setLike(like + 1);
-        console.log(like)
-      }} >👍 {like}</button>
-
-      {/* create dislike button */}
-      <button onClick={() => {
-        setDislike(dislike + 1);
-        console.log(dislike)
-      }} >👎 {dislike}</button>
-
+    <div className="product-container">
+      <img className='product-poster' src={product.poster} alt={product.name} />
+      <div className='product-spec'>
+        <h2 className='product-name'>{product.name}</h2>
+        <p className='product-rating'>⭐{product.rating}</p>
+      </div>
+      <h3 className='product-price'>Price:  ₹ {product.price}</h3>
+      <p className='product-summary'>{product.summary}</p>
     </div>
   )
+
 }
 
-//props => property
-function Welcome({ name, age }) {
-  return (
-    <h1>
-      Hey {name} {age}
-    </h1>
-  );
-}
-
-function Msg({ name, picture }) {
-  return (
-    <div>
-      <img className="profile-pic" src={picture} />
-      <h1>Hi {name}</h1>
-    </div>
-  );
-}
-
-//{} => template syntax
-//SPA => index.html
-//Webpack +babel
-
-//JSX => Javascript XML /extended
-//class in JS  => reserved keyword
-
-//Types of component
-// 1. functional component
-// 2. class component
-
-//custom component
-// 1.First letter must be capital
-// 2. It return  a JSX element
-
-//<> </> => Fragment
-
-// {
-//   data.map((item) => (
-//     <Card icon={item.icon} name={item.name} />
-//   ))
-// }
-
-
-
-// card({icon, name}){
-//   return (
-//     <i class={icon}></i>
-//     <span>{name}</span>
-//   )
-// }
 export default App;
