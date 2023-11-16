@@ -153,7 +153,7 @@ function App() {
 
 function ProductDetails() {
   const { productid } = useParams()
-
+  console.log(productid)
 
   return (
     <h1>Product Detail Page - {productid}</h1>
