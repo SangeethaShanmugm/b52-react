@@ -1,10 +1,12 @@
 import './App.css';
 import { AddColor } from './AddColor';
-import { Counter } from "./Counter"
-import { useState } from 'react';
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Link, useParams } from "react-router-dom"
+import { Msg } from "./Msg"
+import { UserList } from './components/UserList';
+import { Home } from './components/Home';
+import { ProductList } from './components/ProductList';
 
-const INITIAL_PRODUCT_LIST = [
+export const INITIAL_PRODUCT_LIST = [
   {
 
     name: " iPhone 15 (128 GB)",
@@ -21,7 +23,7 @@ const INITIAL_PRODUCT_LIST = [
     poster: "https://m.media-amazon.com/images/I/81SigpJN1KL._AC_UY218_.jpg",
     price: "₹1,34,900 ",
     rating: 5.0,
-    summary: " iPhone 15 Pro has a strong and light aerospace-grade titanium design with a textured matte-glass back. It also features a Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant."
+    summary: " iPhone 15 Pro has Link strong and light aerospace-grade titanium design with Link textured matte-glass back. It also features Link Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant."
 
   },
 
@@ -42,7 +44,7 @@ const INITIAL_PRODUCT_LIST = [
     poster: "https://m.media-amazon.com/images/I/51hqXIAVXAL._AC_UY218_.jpg",
     price: "₹1,00,000",
     rating: 5.0,
-    summary: "Create crystal-clear content worth sharing with Galaxy S23 Ultra’s 200MP camera — the highest camera resolution on a phone; Whether you’re posting or printing, Galaxy S23 Ultra always does the moment justice."
+    summary: "Create crystal-clear content worth sharing with Galaxy S23 Ultra’s 200MP camera — the highest camera resolution on Link phone; Whether you’re posting or printing, Galaxy S23 Ultra always does the moment justice."
 
   },
 
@@ -110,66 +112,52 @@ const INITIAL_PRODUCT_LIST = [
 
 function App() {
 
+
   return (
     <div className="App">
+
+      <nav>
+        <ul>
+          <li>
+            {/* Link changes page without refresh */}
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/products">ProductList</Link>
+          </li>
+          <li>
+            <Link to="/color-game">AddColor</Link>
+          </li>
+          <li>
+            <Link to="/profile">UserList</Link>
+          </li>
+          <li>
+            <Link to="/somewhere">Somewhere</Link>
+          </li>
+        </ul>
+      </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
+        <Route path="/products/:productid" element={<ProductDetails />} />
+
+        <Route path="/color-game" element={<AddColor />} />
+        <Route path="/profile" element={<UserList />} />
       </Routes>
     </div>
   );
 
 }
 
-function Home() {
-  return (
-    <div>Welcome to Product App😊😊😊</div>
-  )
-}
 
+function ProductDetails() {
+  const { productid } = useParams()
 
-function ProductList() {
-  const productList = INITIAL_PRODUCT_LIST
 
   return (
-    <div className='product-list'>
-      {productList.map((pd, index) => (
-        <Product key={index} product={pd} />
-      ))}
-    </div>
+    <h1>Product Detail Page - {productid}</h1>
   )
-}
-
-
-function Product({ product }) {
-
-  const [show, setShow] = useState(true)
-  const styles = {
-    color: product.rating >= 4.5 ? "green" : "red"
-  }
-  //block = > true => visible
-  //none -> false => hide
-  const summaryStyle = {
-    display: show ? "block" : "none"
-  }
-
-  return (
-    <div className="product-container">
-      <img className='product-poster' src={product.poster} alt={product.name} />
-      <div className='product-spec'>
-        <h2 className='product-name'>{product.name}</h2>
-        <p style={styles} className='product-rating'>⭐{product.rating}</p>
-      </div>
-      <h3 className='product-price'>Price:  ₹ {product.price}</h3>
-      <button onClick={() => setShow(!show)}>Toggle description</button>
-      {/* conditional rendering */}
-      {/* show ? "block" : "none" */}
-      {/* {show ? <p className='product-summary'>{product.summary}</p> : null} */}
-      <p style={summaryStyle} className='product-summary'>{product.summary}</p>
-      <Counter />
-    </div>
-  )
-
 }
 
 export default App;
