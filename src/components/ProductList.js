@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { INITIAL_PRODUCT_LIST } from '../App';
 import { Product } from './Product';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
-export function ProductList() {
+
+export function ProductList({ productList, setProductList }) {
   // const productList = INITIAL_PRODUCT_LIST;
 
-  const [productList, setProductList] = useState(INITIAL_PRODUCT_LIST)
+
 
   const [name, setName] = useState("")
   const [poster, setPoster] = useState("")
@@ -16,27 +19,26 @@ export function ProductList() {
   return (
     <div>
       <div className="add-product-form">
-        <input type="text" value={name}
-          onChange={(event) => setName(event.target.value)}
-          placeholder="Enter the name" />
 
-        <input type="text" value={poster}
-          onChange={(event) => setPoster(event.target.value)}
-          placeholder="Enter the poster" />
+        <TextField label="Name" variant="standard" value={name}
+          onChange={(event) => setName(event.target.value)} />
 
-        <input type="text" value={rating}
-          onChange={(event) => setRating(event.target.value)}
-          placeholder="Enter the rating" />
+        <TextField label="Poster" variant="standard" value={poster}
+          onChange={(event) => setPoster(event.target.value)} />
 
-        <input type="text" value={price}
-          onChange={(event) => setPrice(event.target.value)}
-          placeholder="Enter the price" />
+        <TextField label="Rating" variant="standard" value={rating}
+          onChange={(event) => setRating(event.target.value)} />
 
-        <input type="text" value={summary}
-          onChange={(event) => setSummary(event.target.value)}
-          placeholder="Enter the summary" />
+        <TextField label="Price" variant="standard" value={price}
+          onChange={(event) => setPrice(event.target.value)} />
+
+        <TextField label="Summary" variant="standard" value={summary}
+          onChange={(event) => setSummary(event.target.value)} />
+
+
         {/* copy the productList and add newProduct to it */}
-        <button onClick={() => {
+
+        <Button variant="contained" onClick={() => {
           const newProduct = {
             name: name,
             poster: poster,
@@ -45,10 +47,10 @@ export function ProductList() {
             summary: summary
           }
           setProductList([...productList, newProduct]);
-          console.log("newProduct =>",newProduct)
+          console.log("newProduct =>", newProduct)
         }
 
-        }>Add Product</button>
+        }>Add Product</Button>
 
 
       </div>

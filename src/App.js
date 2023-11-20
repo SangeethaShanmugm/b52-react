@@ -1,10 +1,12 @@
 import './App.css';
 import { AddColor } from './AddColor';
-import { Routes, Route, Link, useParams } from "react-router-dom"
+import { Routes, Route, Link } from "react-router-dom"
 import { Msg } from "./Msg"
 import { UserList } from './components/UserList';
 import { Home } from './components/Home';
 import { ProductList } from './components/ProductList';
+import { ProductDetails } from './components/ProductDetails';
+import { useState } from 'react';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -111,11 +113,11 @@ export const INITIAL_PRODUCT_LIST = [
 ]
 
 function App() {
-
+  //Lifting the state up => lifted from child to parent
+  const [productList, setProductList] = useState(INITIAL_PRODUCT_LIST)
 
   return (
     <div className="App">
-
       <nav>
         <ul>
           <li>
@@ -136,11 +138,10 @@ function App() {
           </li>
         </ul>
       </nav>
-
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/products/:productid" element={<ProductDetails />} />
+        <Route path="/products" element={<ProductList productList={productList} setProductList={setProductList} />} />
+        <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
 
         <Route path="/color-game" element={<AddColor />} />
         <Route path="/profile" element={<UserList />} />
@@ -150,14 +151,5 @@ function App() {
 
 }
 
-
-function ProductDetails() {
-  const { productid } = useParams()
-  console.log(productid)
-
-  return (
-    <h1>Product Detail Page - {productid}</h1>
-  )
-}
 
 export default App;

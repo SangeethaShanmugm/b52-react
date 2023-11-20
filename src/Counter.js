@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
+
 
 export function Counter() {
   // let like = 10
@@ -8,16 +11,37 @@ export function Counter() {
   return (
     <div>
       {/* onClick => camelCase */}
-      <button onClick={() => {
+
+      <IconButton aria-label="likeButton" onClick={() => {
         setLike(like + 1);
         console.log(like);
-      }}>👍 {like}</button>
+      }} color="primary">
+        <Badge badgeContent={like} color="primary">
+          👍
+        </Badge>
+      </IconButton>
 
-      {/* create dislike button */}
-      <button onClick={() => {
+      {/* <button onClick={() => {
+        setLike(like + 1);
+        console.log(like);
+      }}>👍 {like}</button> */}
+
+
+      <IconButton aria-label="dislikeButton" onClick={() => {
         setDislike(dislike + 1);
         console.log(dislike);
-      }}>👎 {dislike}</button>
+      }} color="error">
+        <Badge badgeContent={dislike} color="error">
+          👎
+        </Badge>
+      </IconButton>
+
+
+      {/* create dislike button */}
+      {/* <button onClick={() => {
+        setDislike(dislike + 1);
+        console.log(dislike);
+      }}>👎 {dislike}</button> */}
 
     </div>
   );

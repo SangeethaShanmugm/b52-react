@@ -1,7 +1,10 @@
 import { Counter } from "../Counter";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import IconButton from '@mui/material/IconButton';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InfoIcon from '@mui/icons-material/Info';
 
 export function Product({ product, id }) {
 
@@ -25,8 +28,18 @@ export function Product({ product, id }) {
         <p style={styles} className='product-rating'>⭐{product.rating}</p>
       </div>
       <h3 className='product-price'>Price:  ₹ {product.price}</h3>
-      <button onClick={() => setShow(!show)}>Toggle description</button>
-      <button onClick={() => navigate("/products/" + id)} >Info</button>
+      {/* <button onClick={() => setShow(!show)}>Toggle description</button> */}
+
+      <IconButton aria-label="toggle" color="primary" onClick={() => setShow(!show)}>
+        {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </IconButton>
+
+      <IconButton aria-label="info" color="primary" onClick={() => navigate("/products/" + id)}>
+        <InfoIcon />
+      </IconButton>
+
+
+      {/* <button onClick={() => navigate("/products/" + id)} >Info</button> */}
       {/* conditional rendering */}
       {/* show ? "block" : "none" */}
       {/* {show ? <p className='product-summary'>{product.summary}</p> : null} */}

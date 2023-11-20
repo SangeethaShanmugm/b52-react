@@ -125,3 +125,21 @@ const name = "Jack";
         <Msg name={profile.name} picture={profile.pic} />
       ))} */}
       
+
+
+ ProductList (data) -> Product  (data) -> Counter    (data)
+
+                           -> Contact (data)
+
+
+  React flows in one direction  | Pass data from parent to child ✅    
+  Pass data from child to parent ❌                      
+
+
+
+             App (🏔️) (productList, setProductList)
+
+
+
+
+ ProductList (🌊)     ProductDetails (🌊)       
