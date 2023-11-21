@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { INITIAL_PRODUCT_LIST } from '../App';
 import { Product } from './Product';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Button, TextField } from '@mui/material';
+// import TextField from '@mui/material/TextField';
 
 
 export function ProductList({ productList, setProductList }) {

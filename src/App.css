@@ -44,3 +44,7 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.product-detail-container {
+  max-width: 100%;
+}

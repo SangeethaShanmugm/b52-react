@@ -1,17 +1,18 @@
 import './App.css';
 import { AddColor } from './AddColor';
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link, Navigate } from "react-router-dom"
 import { Msg } from "./Msg"
 import { UserList } from './components/UserList';
 import { Home } from './components/Home';
 import { ProductList } from './components/ProductList';
 import { ProductDetails } from './components/ProductDetails';
 import { useState } from 'react';
+import Example from "./Example"
 
 export const INITIAL_PRODUCT_LIST = [
   {
 
-    name: " iPhone 15 (128 GB)",
+    name: "iPhone 15 (128 GB)",
     poster: "https://m.media-amazon.com/images/I/71d7rfSl0wL._AC_UY218_.jpg",
     price: "₹77,900 ",
     rating: 4,
@@ -25,8 +26,8 @@ export const INITIAL_PRODUCT_LIST = [
     poster: "https://m.media-amazon.com/images/I/81SigpJN1KL._AC_UY218_.jpg",
     price: "₹1,34,900 ",
     rating: 5.0,
-    summary: " iPhone 15 Pro has Link strong and light aerospace-grade titanium design with Link textured matte-glass back. It also features Link Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant."
-
+    summary: " iPhone 15 Pro has Link strong and light aerospace-grade titanium design with Link textured matte-glass back. It also features Link Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant.",
+    trailer: "https://www.youtube.com/embed/xqyUdNxWazA"
   },
 
 
@@ -145,6 +146,12 @@ function App() {
 
         <Route path="/color-game" element={<AddColor />} />
         <Route path="/profile" element={<UserList />} />
+        <Route path="/example" element={<Example />} />
+
+        <Route path="/items" element={<Navigate replace to="/products" />} />
+
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
       </Routes>
     </div>
   );
@@ -152,4 +159,16 @@ function App() {
 }
 
 
+function NotFound() {
+  return (
+    <div><img src="https://blog-cdn.lottiefiles.com/2022/08/Taras-Migulko.gif" alt="notfound" /></div>
+  )
+}
+
 export default App;
+
+
+
+// Task  - 15 mins
+// /products/add  => <AddProduct/>
+// Add product => product added => /products
