@@ -14,8 +14,9 @@ import Toolbar from '@mui/material/Toolbar';
 import { Button } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
-
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { ContextExample } from "./components/context/ContextExample"
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -124,22 +125,22 @@ export const INITIAL_PRODUCT_LIST = [
 function App() {
   //Lifting the state up => lifted from child to parent
   const [productList, setProductList] = useState(INITIAL_PRODUCT_LIST)
-
+  const [mode, setMode] = useState("light")
 
   //1. Creating - createContext ✅
   //2. Publisher - provider  - context.Provider  ✅
   //3. Subscriber  -useContext - useContext(context)
 
-  const darkTheme = createTheme({
+  const theme = createTheme({
     palette: {
-      mode: 'dark',
+      mode: mode,
     },
   });
 
   const navigate = useNavigate()
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
         {/* <nav>
@@ -173,7 +174,11 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/products/add")}>Add Product</Button>
             <Button color="inherit" onClick={() => navigate("/color-game")}>AddColor</Button>
             <Button color="inherit" onClick={() => navigate("/profile")}>UserList</Button>
-            <Button color="inherit" onClick={() => navigate("/somewhere")}>Somewhere</Button>
+            <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
+            <Button sx={{ marginLeft: "45%" }} color="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}
+              endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
+              {mode === "light" ? "dark" : "light"} Mode</Button>
+
           </Toolbar>
         </AppBar>
         <Routes>
@@ -186,6 +191,8 @@ function App() {
           <Route path="/color-game" element={<AddColor />} />
           <Route path="/profile" element={<UserList />} />
           <Route path="/example" element={<Example />} />
+          {/* context */}
+          <Route path="/context" element={<ContextExample />} />
 
           <Route path="/items" element={<Navigate replace to="/products" />} />
 
