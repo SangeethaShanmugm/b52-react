@@ -17,6 +17,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ContextExample } from "./components/context/ContextExample"
+import TicTacToe from './components/TicTacToe';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -175,6 +176,7 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/color-game")}>AddColor</Button>
             <Button color="inherit" onClick={() => navigate("/profile")}>UserList</Button>
             <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
+            <Button color="inherit" onClick={() => navigate("/tictactoe")}>TicTacToe</Button>
             <Button sx={{ marginLeft: "45%" }} color="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
               {mode === "light" ? "dark" : "light"} Mode</Button>
@@ -193,6 +195,7 @@ function App() {
           <Route path="/example" element={<Example />} />
           {/* context */}
           <Route path="/context" element={<ContextExample />} />
+          <Route path="/tictactoe" element={<TicTacToe />} />
 
           <Route path="/items" element={<Navigate replace to="/products" />} />
 
