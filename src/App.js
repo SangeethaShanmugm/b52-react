@@ -1,4 +1,5 @@
 import './App.css';
+import { useState, useEffect } from 'react';
 import { AddColor } from './AddColor';
 import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom"
 import { Msg } from "./Msg"
@@ -6,7 +7,6 @@ import { UserList } from './components/UserList';
 import { Home } from './components/Home';
 import { ProductList } from './components/ProductList';
 import { ProductDetails } from './components/ProductDetails';
-import { useState } from 'react';
 import Example from "./Example"
 import { AddProduct } from "./components/Addproduct"
 import AppBar from '@mui/material/AppBar';
@@ -19,6 +19,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ContextExample } from "./components/context/ContextExample"
 import TicTacToe from './components/TicTacToe';
 import UpdateProduct from './UpdateProduct';
+import LifeCycleA from './components/class/LifeCycleA';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -130,9 +131,7 @@ function App() {
   const [productList, setProductList] = useState([])
   const [mode, setMode] = useState("light")
 
-  fetch("https://6541cd35f0b8287df1fee5de.mockapi.io/products")
-    .then((res) => res.json())
-    .then((data) => setProductList(data))
+
 
 
 
@@ -163,6 +162,7 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
             <Button color="inherit" onClick={() => navigate("/tictactoe")}>TicTacToe</Button>
             <Button color="inherit" onClick={() => navigate("/update")}>Update Product</Button>
+            <Button color="inherit" onClick={() => navigate("/class")}>Class</Button>
             <Button sx={{ marginLeft: "45%" }} color="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
               {mode === "light" ? "dark" : "light"} Mode</Button>
@@ -171,7 +171,7 @@ function App() {
         </AppBar>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList productList={productList} setProductList={setProductList} />} />
+          <Route path="/products" element={<ProductList />} />
           <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
           <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
 
@@ -183,6 +183,7 @@ function App() {
           <Route path="/context" element={<ContextExample />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/update" element={<UpdateProduct />} />
+          <Route path="/class" element={<LifeCycleA />} />
 
           <Route path="/items" element={<Navigate replace to="/products" />} />
 
