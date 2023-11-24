@@ -143,3 +143,29 @@ const name = "Jack";
 
 
  ProductList (🌊)     ProductDetails (🌊)       
+
+
+  {/* <nav>
+        <ul>
+          <li>
+            Link changes page without refresh
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/products">ProductList</Link>
+          </li>
+          <li>
+            <Link to="/products/add">Add Product</Link>
+          </li>
+          <li>
+            <Link to="/color-game">AddColor</Link>
+          </li>
+          <li>
+            <Link to="/profile">UserList</Link>
+          </li>
+          <li>
+            <Link to="/somewhere">Somewhere</Link>
+          </li>
+        </ul>
+      </nav> */}
+      

@@ -5,8 +5,9 @@ import IconButton from '@mui/material/IconButton';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoIcon from '@mui/icons-material/Info';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export function Product({ product, id }) {
+export function Product({ product, id, deleteButton }) {
 
   const [show, setShow] = useState(true);
   const styles = {
@@ -44,7 +45,14 @@ export function Product({ product, id }) {
       {/* show ? "block" : "none" */}
       {/* {show ? <p className='product-summary'>{product.summary}</p> : null} */}
       <p style={summaryStyle} className='product-summary'>{product.summary}</p>
-      <Counter />
+      <div className="counter-style">
+        <Counter />
+        {deleteButton}
+        {/* <IconButton aria-label="deletebtn" color="error" >
+          <DeleteIcon />
+        </IconButton> */}
+      </div>
+
     </div>
   );
 

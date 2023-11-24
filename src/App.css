@@ -49,6 +49,12 @@
   max-width: 100%;
 }
 
+.counter-style {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* tictacttoe */
 .full-name {
   display: flex;
   flex-direction: column;

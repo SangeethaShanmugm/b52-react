@@ -18,6 +18,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ContextExample } from "./components/context/ContextExample"
 import TicTacToe from './components/TicTacToe';
+import UpdateProduct from './UpdateProduct';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -124,9 +125,16 @@ export const INITIAL_PRODUCT_LIST = [
 ]
 
 function App() {
+
   //Lifting the state up => lifted from child to parent
-  const [productList, setProductList] = useState(INITIAL_PRODUCT_LIST)
+  const [productList, setProductList] = useState([])
   const [mode, setMode] = useState("light")
+
+  fetch("https://6541cd35f0b8287df1fee5de.mockapi.io/products")
+    .then((res) => res.json())
+    .then((data) => setProductList(data))
+
+
 
   //1. Creating - createContext ✅
   //2. Publisher - provider  - context.Provider  ✅
@@ -144,29 +152,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
-        {/* <nav>
-        <ul>
-          <li>
-            Link changes page without refresh
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/products">ProductList</Link>
-          </li>
-          <li>
-            <Link to="/products/add">Add Product</Link>
-          </li>
-          <li>
-            <Link to="/color-game">AddColor</Link>
-          </li>
-          <li>
-            <Link to="/profile">UserList</Link>
-          </li>
-          <li>
-            <Link to="/somewhere">Somewhere</Link>
-          </li>
-        </ul>
-      </nav> */}
 
         <AppBar position="static">
           <Toolbar>
@@ -177,6 +162,7 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/profile")}>UserList</Button>
             <Button color="inherit" onClick={() => navigate("/context")}>Context</Button>
             <Button color="inherit" onClick={() => navigate("/tictactoe")}>TicTacToe</Button>
+            <Button color="inherit" onClick={() => navigate("/update")}>Update Product</Button>
             <Button sx={{ marginLeft: "45%" }} color="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
               {mode === "light" ? "dark" : "light"} Mode</Button>
@@ -185,7 +171,7 @@ function App() {
         </AppBar>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList productList={productList} />} />
+          <Route path="/products" element={<ProductList productList={productList} setProductList={setProductList} />} />
           <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
           <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
 
@@ -196,6 +182,7 @@ function App() {
           {/* context */}
           <Route path="/context" element={<ContextExample />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
+          <Route path="/update" element={<UpdateProduct />} />
 
           <Route path="/items" element={<Navigate replace to="/products" />} />
 
