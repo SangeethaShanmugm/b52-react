@@ -41,9 +41,13 @@ export function AddProduct({ productList, setProductList }) {
                     rating: rating,
                     summary: summary
                 }
-                setProductList([...productList, newProduct]);
-                console.log("newProduct =>", newProduct)
-                navigate("/products")
+                //1.method - POST
+                //2.body - data - JSON
+                //3.headers - JSON
+
+                // setProductList([...productList, newProduct]);
+                // console.log("newProduct =>", newProduct)
+                // navigate("/products")
             }
 
             }>Add Product</Button>

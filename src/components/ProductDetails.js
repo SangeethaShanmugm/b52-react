@@ -1,13 +1,28 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import { useEffect, useState } from "react";
+import { API } from "../global";
 
-export function ProductDetails({ productList }) {
+export function ProductDetails() {
   const { productid } = useParams(); //get parameters from URL
   console.log(productid);
-  console.log(productList[productid])
-  const product = productList[productid]
-  console.log(product.name)
+
+  const [product, setProduct] = useState({})
+
+
+  useEffect(() => {
+    fetch(`${API}/${productid}`, {
+      method: "GET"
+    })
+      .then((res) => res.json())
+      .then((data) => setProduct(data))
+  }, [])//call only once
+
+
+  // console.log(productList[productid])
+  // const product = productList[productid]
+  // console.log(product.name)
 
   const navigate = useNavigate()
 
