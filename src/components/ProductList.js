@@ -5,19 +5,28 @@ import { Button, TextField } from '@mui/material';
 // import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit'
 import { API } from '../global';
-
-
+import { useNavigate } from "react-router-dom"
+import axios from "axios";
 export function ProductList() {
   // const productList = INITIAL_PRODUCT_LIST;
   const [productList, setProductList] = useState([])
 
   const getProducts = () => {
+    // try {
+    //   const response = await axios.get(`${API}`)
+    //   setProductList(response.data)
+    //   // .then((res) => setProductList(res.data))
+    // } catch (error) {
+    //   console.log("Error while fetching data", error)
+    // }
     fetch(`${API}`, {
       method: "GET"
     })
       .then((res) => res.json())
       .then((data) => setProductList(data))
+
   }
 
   useEffect(() => getProducts(), [])//call only once
@@ -32,6 +41,9 @@ export function ProductList() {
 
   }
 
+
+  const navigate = useNavigate()
+
   return (
     <div>
 
@@ -41,6 +53,13 @@ export function ProductList() {
             deleteButton={
               <IconButton color="error" onClick={() => handleDelete(pd.id)}>
                 <DeleteIcon />
+              </IconButton>
+            }
+
+
+            editButton={
+              <IconButton color="secondary" onClick={() => navigate(`/products/edit/${pd.id}`)}>
+                <EditIcon />
               </IconButton>
             }
 

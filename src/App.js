@@ -20,6 +20,8 @@ import { ContextExample } from "./components/context/ContextExample"
 import TicTacToe from './components/TicTacToe';
 import UpdateProduct from './UpdateProduct';
 import LifeCycleA from './components/class/LifeCycleA';
+import { NotFound } from './components/NotFound';
+import { EditProduct } from './components/EditProduct';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -173,7 +175,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:productid" element={<ProductDetails />} />
-          <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
+          <Route path="/products/add" element={<AddProduct />} />
+          <Route path="/products/edit/:productid" element={<EditProduct />} />
 
 
           <Route path="/color-game" element={<AddColor />} />
@@ -196,12 +199,6 @@ function App() {
 
 }
 
-
-function NotFound() {
-  return (
-    <div><img src="https://blog-cdn.lottiefiles.com/2022/08/Taras-Migulko.gif" alt="notfound" /></div>
-  )
-}
 
 export default App;
 

@@ -169,3 +169,6 @@ const name = "Jack";
         </ul>
       </nav> */}
       
+
+  EditProduct  = > AddProduct  +  ProductDetail
+  products/edit/:id => PUT method

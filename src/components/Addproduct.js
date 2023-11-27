@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from "react-router-dom"
+import { API } from "../global";
+import axios from "axios";
 
-export function AddProduct({ productList, setProductList }) {
+export function AddProduct() {
 
     const [name, setName] = useState("")
     const [poster, setPoster] = useState("")
@@ -41,9 +43,29 @@ export function AddProduct({ productList, setProductList }) {
                     rating: rating,
                     summary: summary
                 }
-                //1.method - POST
+                //1.method - POST ✅
                 //2.body - data - JSON
                 //3.headers - JSON
+
+                axios.post(`${API}`, newProduct, {
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then((newProduct) => console.log(newProduct))
+                    .catch((err) => console.log(err))
+                    .then(() => navigate("/products"))
+                // fetch(`${API}`, {
+                //     method: "POST",
+                //     body: JSON.stringify(newProduct),
+                //     headers: {
+                //         "Content-Type": "application/json"
+                //     }
+                // })
+                //     .then((res) => res.json())
+                //     .then(() => navigate("/products"))
+
 
                 // setProductList([...productList, newProduct]);
                 // console.log("newProduct =>", newProduct)
