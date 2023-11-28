@@ -22,6 +22,7 @@ import UpdateProduct from './UpdateProduct';
 import LifeCycleA from './components/class/LifeCycleA';
 import { NotFound } from './components/NotFound';
 import { EditProduct } from './components/EditProduct';
+import { BasicForm } from './components/formik/BasicForm';
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -165,7 +166,11 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/tictactoe")}>TicTacToe</Button>
             <Button color="inherit" onClick={() => navigate("/update")}>Update Product</Button>
             <Button color="inherit" onClick={() => navigate("/class")}>Class</Button>
-            <Button sx={{ marginLeft: "45%" }} color="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}
+            <Button color="inherit" onClick={() => navigate("/basicform")}>BasicForm</Button>
+
+
+            {/* sx={{ marginLeft: "45%" }} */}
+            <Button color="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
               {mode === "light" ? "dark" : "light"} Mode</Button>
 
@@ -187,6 +192,8 @@ function App() {
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/update" element={<UpdateProduct />} />
           <Route path="/class" element={<LifeCycleA />} />
+          <Route path="/basicform" element={<BasicForm />} />
+
 
           <Route path="/items" element={<Navigate replace to="/products" />} />
 
