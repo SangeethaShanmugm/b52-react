@@ -23,6 +23,12 @@ import LifeCycleA from './components/class/LifeCycleA';
 import { NotFound } from './components/NotFound';
 import { EditProduct } from './components/EditProduct';
 import { BasicForm } from './components/formik/BasicForm';
+import { Cart } from "./components/Cart"
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import IconButton from '@mui/material/IconButton';
+import { useSelector } from 'react-redux';
+
+
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -130,13 +136,12 @@ export const INITIAL_PRODUCT_LIST = [
 
 function App() {
 
+  const cartItems = useSelector((store) => store.cart.items)
+  console.log("cartItems", cartItems)
+
   //Lifting the state up => lifted from child to parent
   const [productList, setProductList] = useState([])
   const [mode, setMode] = useState("light")
-
-
-
-
 
   //1. Creating - createContext ✅
   //2. Publisher - provider  - context.Provider  ✅
@@ -151,6 +156,7 @@ function App() {
   const navigate = useNavigate()
 
   return (
+
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
@@ -167,7 +173,12 @@ function App() {
             <Button color="inherit" onClick={() => navigate("/update")}>Update Product</Button>
             <Button color="inherit" onClick={() => navigate("/class")}>Class</Button>
             <Button color="inherit" onClick={() => navigate("/basicform")}>BasicForm</Button>
-
+            <Button color="inherit" onClick={() => navigate("/cart")}>
+              Cart {cartItems.length}
+              <IconButton aria-label="cart" >
+                <ShoppingCartIcon />
+              </IconButton>
+            </Button>
 
             {/* sx={{ marginLeft: "45%" }} */}
             <Button color="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}
@@ -193,7 +204,7 @@ function App() {
           <Route path="/update" element={<UpdateProduct />} />
           <Route path="/class" element={<LifeCycleA />} />
           <Route path="/basicform" element={<BasicForm />} />
-
+          <Route path="/cart" element={<Cart />} />
 
           <Route path="/items" element={<Navigate replace to="/products" />} />
 
@@ -202,6 +213,7 @@ function App() {
         </Routes>
       </div>
     </ThemeProvider>
+
   );
 
 }

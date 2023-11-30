@@ -9,9 +9,17 @@ import EditIcon from '@mui/icons-material/Edit'
 import { API } from '../global';
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { addItem } from '../utils/CartSlice';
 export function ProductList() {
+
+  const dispatch = useDispatch()
   // const productList = INITIAL_PRODUCT_LIST;
   const [productList, setProductList] = useState([])
+
+  const handleAddItem = (product) => {
+    dispatch(addItem(product))
+  }
 
   const getProducts = () => {
     // try {
@@ -44,6 +52,10 @@ export function ProductList() {
 
   const navigate = useNavigate()
 
+
+
+
+
   return (
     <div>
 
@@ -55,12 +67,16 @@ export function ProductList() {
                 <DeleteIcon />
               </IconButton>
             }
-
-
             editButton={
               <IconButton color="secondary" onClick={() => navigate(`/products/edit/${pd.id}`)}>
                 <EditIcon />
               </IconButton>
+            }
+
+            addCartItem={
+              <Button variant="contained" color="success"
+                onClick={() => handleAddItem(pd)}
+              >Add</Button>
             }
 
           // deleteButton={

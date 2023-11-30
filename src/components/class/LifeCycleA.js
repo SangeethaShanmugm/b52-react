@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import LifeCycleB from './LifeCycleB'
+import { StateLess } from './StateLess'
+import StateFull from './StateFull'
 
 export default class LifeCycleA extends Component {
 
@@ -30,7 +32,10 @@ export default class LifeCycleA extends Component {
         return (
             <div>ClassComponent
                 <h1>Hi my name is {this.state.name}</h1>
-                <LifeCycleB />
+                {/* <LifeCycleB /> */}
+                <h1>StateLess</h1>
+                <StateLess />
+                <StateFull />
             </div>
         )
     }
